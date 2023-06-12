@@ -24,6 +24,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createRequestFunction = exports.toPathString = exports.serializeDataIfNeeded = exports.setSearchParams = exports.setOAuthToObject = exports.setBearerAuthToObject = exports.setBasicAuthToObject = exports.setApiKeyToObject = exports.assertParamExists = exports.DUMMY_BASE_URL = void 0;
 const base_1 = require("./base");
+const axios_fetch_adapter_1 = require("@vespaiach/axios-fetch-adapter");
 /**
  *
  * @export
@@ -145,7 +146,7 @@ exports.toPathString = function (url) {
  */
 exports.createRequestFunction = function (axiosArgs, globalAxios, BASE_PATH, configuration) {
     return (axios = globalAxios, basePath = BASE_PATH) => {
-        const axiosRequestArgs = Object.assign(Object.assign({}, axiosArgs.options), { url: ((configuration === null || configuration === void 0 ? void 0 : configuration.basePath) || basePath) + axiosArgs.url });
+        const axiosRequestArgs = Object.assign(Object.assign({}, axiosArgs.options), { adapter: axios_fetch_adapter_1.default, url: ((configuration === null || configuration === void 0 ? void 0 : configuration.basePath) || basePath) + axiosArgs.url });
         return axios.request(axiosRequestArgs);
     };
 };
